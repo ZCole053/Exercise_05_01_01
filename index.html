@@ -7,12 +7,14 @@
     <meta name="viewport" content="width=device-width, user-scalable=no">
     <link href="https://fonts.googleapis.com/css?family=Lato:400,100,700,900" rel="stylesheet" type="text/css">
     <link rel="stylesheet" href="css/style.css">
+    <script src="js/lib/angular/angular.min.js"></script>
 </head>
 
 <body>
     <div class="page">
-        <section class="card register">
-            <form name="myform">
+        <section class="card register"
+        ng-app>
+            <form name="myform" novalidate>
 
                 <div class="textintro">
                     <h1>Form Validation</h1>
@@ -20,10 +22,21 @@
                 </div>
 
                 <fieldset>
-                    <input type="text" name="firstname" placeholder="First Name">
-                    <input type="text" name="lastname" placeholder="Last Name">
-                    <input type="email" name="email" placeholder="Email">
-                    <input type="password" name="password" placeholder="Password">
+                    <input type="text" name="firstname" placeholder="First Name"
+                    ng-model="user.firstname"
+                    ng-required="true"> <!-- model works similar to a variable decleration -->
+                    <p class="error validationerror" ng-show="myform.firstname.$invalid && myform.firstname.$touched">You must fill out your first name.</p>
+                    <input type="text" name="lastname" placeholder="Last Name"
+                    ng-model="user.lastname"
+                    ng-required="true">
+                    <p class="error validationerror" ng-show="myform.lastname.$invalid && myform.lastname.$touched">You must fill out your last name.</p>
+                    <input type="email" name="email" placeholder="Email"
+                    ng-model="user.email">
+                    <p class="error validationerror" ng-show="myform.email.$invalid && myform.email.$touched">This must be a valid email.</p>
+                    <input type="password" name="password" placeholder="Password"
+                    ng-model="user.password"
+                    ng-minlength="6">
+                    <p class="error validationerror" ng-show="myform.password.$invalid && myform.password.$touched">Password must be at least 6 characters.</p>
                 </fieldset>
 
                 <button type="submit" class="btn">Submit</button>
