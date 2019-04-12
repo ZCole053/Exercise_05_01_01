@@ -8,17 +8,24 @@
     <link href="https://fonts.googleapis.com/css?family=Lato:400,100,700,900" rel="stylesheet" type="text/css">
     <link rel="stylesheet" href="css/style.css">
     <script src="js/lib/angular/angular.min.js"></script>
+    <script src="js/app.js"></script>
 </head>
 
 <body>
     <div class="page">
+        <!-- pulls in app and brings controller along with -->
         <section class="card register"
-        ng-app>
-            <form name="myform" novalidate>
+        ng-app='myApp'
+        ng-controller="RegistrationController">
+        <!-- ng-submit is like an on submit -->
+            <form name="myform" 
+            ng-submit="register()"
+            novalidate>
 
                 <div class="textintro">
                     <h1>Form Validation</h1>
                     <p>Please fill out the following form</p>
+                    <p ng-show="message">{{message}}</p>
                 </div>
 
                 <fieldset>
